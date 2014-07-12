@@ -1,11 +1,9 @@
 /**
  * 
  */
-package com.imos.hb.model;
+package com.imos.hb.manytomany;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -18,6 +16,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 
 import com.imos.hb.generic.GenericObject;
+import com.imos.hb.onetoone.UserDetail;
 
 /**
  * @author Pintu
@@ -37,15 +36,15 @@ public class Address implements Serializable, GenericObject {
 	
 	@ManyToOne
 	@JoinColumn(name="FK_ADDR_ID")
-	private final List<UserDetail> userDetail = new ArrayList<>();
+	private UserDetail userDetail;
 	
 	@Column(name="ADDRESS_TYPE")
 	private String addressType;
 	
-	@Column(name="FIRST_NAME")
+	@Column(name="FIRST_STREET")
 	private String firstStreet;
 	
-	@Column(name="SECOND_NAME")
+	@Column(name="SECOND_STREET")
 	private String secondStreet;
 	
 	@Column(name="CITY")
@@ -177,6 +176,20 @@ public class Address implements Serializable, GenericObject {
 	 */
 	public void setAddressType(String addressType) {
 		this.addressType = addressType;
+	}
+
+	/**
+	 * @return the userDetail
+	 */
+	public UserDetail getUserDetail() {
+		return userDetail;
+	}
+
+	/**
+	 * @param userDetail the userDetail to set
+	 */
+	public void setUserDetail(UserDetail userDetail) {
+		this.userDetail = userDetail;
 	}
 	
 	

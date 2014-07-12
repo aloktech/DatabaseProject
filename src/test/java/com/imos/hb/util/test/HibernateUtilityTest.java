@@ -3,7 +3,6 @@
  */
 package com.imos.hb.util.test;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.*;
@@ -23,7 +22,7 @@ public class HibernateUtilityTest {
 		String filePath = "src\\test\\resources\\com\\imos\\testing\\";
 		List<String> paths = null;
 		
-		paths  = CommonUtility.extractPackageNameFromFilePath(filePath, new ArrayList<String>(),"java");
+		paths  = CommonUtility.extractPackageNameFromFilePath(filePath,"src\\main\\java\\", "java");
 		assertTrue(paths.size() == 2);
 		assertNotNull(filePath);
 		assertFalse(filePath.isEmpty());

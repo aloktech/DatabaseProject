@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.imos.hb.model;
+package com.imos.hb.manytomany;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -12,7 +12,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+
+import com.imos.hb.onetoone.Project;
 
 /**
  * @author Pintu
@@ -31,7 +35,8 @@ public class Company implements Serializable {
 	@OneToMany(targetEntity=Project.class, mappedBy="company", cascade=CascadeType.ALL)
 	private final List<Project> projects = new ArrayList<>();
 	
-	@OneToMany(targetEntity=Domain.class, mappedBy="company", cascade=CascadeType.ALL)
+	@ManyToMany
+	@JoinColumn(name="FK_C_ID")
 	private final List<Domain> domains = new ArrayList<>();
 	/**
 	 * @return the id

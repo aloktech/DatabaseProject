@@ -1,4 +1,4 @@
-package com.imos.hb.model;
+package com.imos.hb.onetoone;
 
 import java.io.Serializable;
 
@@ -43,8 +43,6 @@ public class User implements Serializable, GenericObject {
 	@OneToOne(cascade=CascadeType.ALL, orphanRemoval=true)
 	@JoinColumn(name="FK_UD_ID")
 	private UserDetail userDetail;
-	
-	private Company company;
 	
 	@Override
 	public boolean equals(Object obj) {
@@ -166,14 +164,6 @@ public class User implements Serializable, GenericObject {
 	@Override
 	public Object getId() {
 		return employeeId;
-	}
-
-	public Company getCompany() {
-		return company;
-	}
-
-	public void setCompany(Company company) {
-		this.company = company;
 	}
 	
 	

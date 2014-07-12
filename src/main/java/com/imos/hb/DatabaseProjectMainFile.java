@@ -8,9 +8,9 @@ import java.util.List;
 import org.hibernate.Session;
 
 import com.imos.hb.generic.GenericActionImpl;
-import com.imos.hb.model.Address;
-import com.imos.hb.model.User;
-import com.imos.hb.model.UserDetail;
+import com.imos.hb.manytomany.Address;
+import com.imos.hb.onetoone.User;
+import com.imos.hb.onetoone.UserDetail;
 import com.imos.hb.util.AddressType;
 import com.imos.hb.util.Gender;
 import com.imos.hb.util.HibernateUtility;
@@ -33,9 +33,10 @@ public class DatabaseProjectMainFile {
 		action = new GenericActionImpl();
 
 		hu.setDatabaseName("sm");
-		hu.setFilePath("F:\\Tools\\Eclipse SDK\\workspace2\\DatabaseProject\\src\\com\\imos\\hb\\model");
+		String basePath = "src\\main\\java\\com\\imos\\hb";
+		hu.setFilePath(basePath + "\\model,"+  basePath +"\\onetoone,"+ basePath + "\\onetomany," + basePath+"\\manytomany");
 		hu.setDatabaseName("smdb");
-		//hu.setCreateDatabase(true);
+		hu.setCreateDatabase(true);
 
 		hu.configure();
 		hu.createSession();

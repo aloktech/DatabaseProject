@@ -8,7 +8,7 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 import com.imos.hb.DatabaseProjectMainFile;
-import com.imos.hb.model.User;
+import com.imos.hb.onetoone.User;
 
 /**
  * @author Pintu

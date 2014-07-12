@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.imos.hb.model;
+package com.imos.hb.onetoone;
 
 import java.io.Serializable;
 import java.sql.Date;
@@ -18,6 +18,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 
 import com.imos.hb.generic.GenericObject;
+import com.imos.hb.manytomany.Address;
+import com.imos.hb.manytomany.Company;
+import com.imos.hb.manytomany.Domain;
+import com.imos.hb.onetomany.Skill;
+import com.imos.hb.onetomany.SkillType;
 
 /**
  * @author Pintu
@@ -44,15 +49,19 @@ public class UserDetail implements Serializable, GenericObject {
 	private final List<Company> companies = new ArrayList<>();
 	
 	@OneToMany(cascade=CascadeType.ALL)
+	@JoinColumn(name="FK_DU_ID")
 	private final  List<Project> projects = new ArrayList<>();
 	
 	@OneToMany(cascade=CascadeType.ALL)
+	@JoinColumn(name="FK_DU_ID")
 	private final List<Domain> domains = new ArrayList<>();
 	
 	@OneToMany(cascade=CascadeType.ALL)
+	@JoinColumn(name="FK_DU_ID")
 	private final List<SkillType> skillTypes = new ArrayList<>();
 	
 	@OneToMany(cascade=CascadeType.ALL)
+	@JoinColumn(name="FK_DU_ID")
 	private final List<Skill> skills = new ArrayList<>();
 
 	/**

@@ -1,28 +1,48 @@
-package com.imos.hb.model;
+/**
+ * 
+ */
+package com.imos.hb.onetomany;
 
+import java.io.Serializable;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 
-public class UserProjectDetail {
+import com.imos.hb.onetoone.Project;
+
+/**
+ * @author Pintu
+ *
+ */
+@Entity
+public class UserCompanyDetail implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 978005478436650731L;
+
 	@Id
 	private long id;
 	
 	@Column
 	private String companyName;
 	
-	@Column
+	@OneToMany
+	@JoinColumn(name="FK_UCD_ID")
 	private List<Project> projects = new ArrayList<>();
 	
 	@Column
 	private Date dateOfJoin;
 	
 	@Column
-	private Date dateOfReleave;
+	private Date dateOfRelease;
 
 	/**
 	 * @return the id
@@ -81,18 +101,18 @@ public class UserProjectDetail {
 	}
 
 	/**
-	 * @return the dateOfReleave
+	 * @return the dateOfRelease
 	 */
-	public Date getDateOfReleave() {
-		return dateOfReleave;
+	public Date getDateOfRelease() {
+		return dateOfRelease;
 	}
 
 	/**
-	 * @param dateOfReleave the dateOfReleave to set
+	 * @param dateOfRelease the dateOfRelease to set
 	 */
-	public void setDateOfReleave(Date dateOfReleave) {
-		this.dateOfReleave = dateOfReleave;
+	public void setDateOfRelease(Date dateOfRelease) {
+		this.dateOfRelease = dateOfRelease;
 	}
-	
+
 	
 }

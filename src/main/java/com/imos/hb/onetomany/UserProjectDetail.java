@@ -1,32 +1,24 @@
-/**
- * 
- */
-package com.imos.hb.model;
+package com.imos.hb.onetomany;
 
-import java.io.Serializable;
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Column;
-import javax.persistence.Entity;
 import javax.persistence.Id;
 
-/**
- * @author Pintu
- *
- */
-@Entity
-public class ProjectDetail implements Serializable{
-	
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -1735804770457978305L;
+import com.imos.hb.onetoone.Project;
 
+public class UserProjectDetail {
+	
 	@Id
 	private long id;
 	
 	@Column
-	private String projectName;
+	private String companyName;
+	
+	@Column
+	private List<Project> projects = new ArrayList<>();
 	
 	@Column
 	private Date dateOfJoin;
@@ -49,17 +41,31 @@ public class ProjectDetail implements Serializable{
 	}
 
 	/**
-	 * @return the projectName
+	 * @return the companyName
 	 */
-	public String getProjectName() {
-		return projectName;
+	public String getCompanyName() {
+		return companyName;
 	}
 
 	/**
-	 * @param projectName the projectName to set
+	 * @param companyName the companyName to set
 	 */
-	public void setProjectName(String projectName) {
-		this.projectName = projectName;
+	public void setCompanyName(String companyName) {
+		this.companyName = companyName;
+	}
+
+	/**
+	 * @return the projects
+	 */
+	public List<Project> getProjects() {
+		return projects;
+	}
+
+	/**
+	 * @param projects the projects to set
+	 */
+	public void setProjects(List<Project> projects) {
+		this.projects = projects;
 	}
 
 	/**

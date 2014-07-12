@@ -1,4 +1,4 @@
-package com.imos.hb.model;
+package com.imos.hb.onetomany;
 
 import java.io.Serializable;
 
@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 /**
  * @author Pintu
@@ -18,7 +19,10 @@ public class Skill implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
-
+	
+	@ManyToOne
+	private SkillType skillType;
+	
 	/**
 	 * @return the id
 	 */

@@ -47,9 +47,7 @@ public class HibernateUtility {
 
 	public void configure() {
 
-		List<String> paths = CommonUtility.extractPackageNameFromFilePath(filePath, new ArrayList<String>(),"java");
-
-		for (String path : paths) {
+		for (String path : CommonUtility.extractPackageNameFromFilePath(filePath,"src\\main\\java\\","java")) {
 			try {
 				cfg.addAnnotatedClass(Class.forName(path));
 			} catch (ClassNotFoundException e) {
