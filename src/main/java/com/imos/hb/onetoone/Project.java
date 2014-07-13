@@ -1,6 +1,5 @@
 package com.imos.hb.onetoone;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,6 +13,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import com.imos.hb.generic.GenericObject;
 import com.imos.hb.manytomany.Company;
 import com.imos.hb.manytomany.Domain;
 
@@ -23,7 +23,7 @@ import com.imos.hb.manytomany.Domain;
  */
 @SuppressWarnings("serial")
 @Entity
-public class Project implements Serializable {
+public class Project implements GenericObject {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

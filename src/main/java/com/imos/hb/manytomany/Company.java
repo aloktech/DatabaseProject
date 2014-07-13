@@ -3,7 +3,6 @@
  */
 package com.imos.hb.manytomany;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,6 +17,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
+import com.imos.hb.generic.GenericObject;
 import com.imos.hb.onetoone.Project;
 
 /**
@@ -26,7 +26,7 @@ import com.imos.hb.onetoone.Project;
  */
 @SuppressWarnings("serial")
 @Entity
-public class Company implements Serializable {
+public class Company implements GenericObject {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

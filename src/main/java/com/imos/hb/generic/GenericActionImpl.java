@@ -5,7 +5,6 @@ package com.imos.hb.generic;
 
 import java.io.Serializable;
 import java.util.List;
-import java.util.logging.Logger;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -18,8 +17,6 @@ import com.imos.hb.util.DPLogger;
  *
  */
 public class GenericActionImpl implements GenericAction<GenericObject> {
-	
-	private final Logger LOGGER = Logger.getLogger(GenericActionImpl.class.getSimpleName());
 	
 	public GenericActionImpl() {
 	}
@@ -56,10 +53,10 @@ public class GenericActionImpl implements GenericAction<GenericObject> {
 				tran.begin();
 				session.persist(entity);
 				tran.commit();
-				DPLogger.info(LOGGER, type, "is saved to the database");
+				DPLogger.info(type,"dataSavedMsg", "is saved to the database");
 			} catch (Exception e) {
 				tran.rollback();
-				DPLogger.warning(LOGGER, type, "is not saved to the database");
+				DPLogger.warning(type,"", "is not saved to the database");
 				return entity;
 			}
 		}
@@ -74,10 +71,10 @@ public class GenericActionImpl implements GenericAction<GenericObject> {
 			tran.begin();
 			session.saveOrUpdate(entity);
 			tran.commit();
-			DPLogger.info(LOGGER, entity.getClass(), "is saved to the database");
+			DPLogger.info(entity.getClass(),"dataSavedMsg", "is saved to the database");
 		} catch (Exception e) {
 			tran.rollback();
-			DPLogger.warning(LOGGER, entity.getClass(), "is not saved to the database");
+			DPLogger.warning(entity.getClass(),"dataSavedMsg", "is not saved to the database");
 			return entity;
 		} finally {
 			session.flush();
@@ -99,10 +96,10 @@ public class GenericActionImpl implements GenericAction<GenericObject> {
 				tran.begin();
 				session.delete(obj);
 				tran.commit();
-				DPLogger.info(LOGGER, entity.getClass(), "is deleted from the");
+				DPLogger.info(type,"", "is deleted from the");
 			} catch (Exception e) {
 				tran.rollback();
-				DPLogger.warning(LOGGER, type, "is not saved to the database");
+				DPLogger.warning(type,"", "is not saved to the database");
 			}  finally {
 				session.flush();
 				session.clear();

@@ -3,7 +3,6 @@
  */
 package com.imos.hb.onetoone;
 
-import java.io.Serializable;
 import java.sql.Date;
 
 import javax.persistence.Column;
@@ -12,12 +11,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import com.imos.hb.generic.GenericObject;
+
 /**
  * @author Pintu
  *
  */
 @Entity
-public class ProjectDetail implements Serializable {
+public class ProjectDetail implements GenericObject {
 
 	/**
 	 * 
@@ -37,13 +38,6 @@ public class ProjectDetail implements Serializable {
 
 	@Column(name="DATE_OF_RELEASE")
 	private Date dateOfRelease;
-
-	/**
-	 * @return the id
-	 */
-	public long getId() {
-		return id;
-	}
 
 	/**
 	 * @param id
@@ -96,6 +90,12 @@ public class ProjectDetail implements Serializable {
 	 */
 	public void setDateOfRelease(Date dateOfRelease) {
 		this.dateOfRelease = dateOfRelease;
+	}
+
+	@Override
+	public Object getId() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

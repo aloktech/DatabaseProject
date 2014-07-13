@@ -3,7 +3,6 @@
  */
 package com.imos.hb.manytomany;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,6 +15,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
+import com.imos.hb.generic.GenericObject;
 import com.imos.hb.onetomany.SkillType;
 
 /**
@@ -24,7 +24,7 @@ import com.imos.hb.onetomany.SkillType;
  */
 @SuppressWarnings("serial")
 @Entity
-public class Domain implements Serializable {
+public class Domain implements GenericObject {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

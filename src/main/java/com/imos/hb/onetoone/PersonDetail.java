@@ -3,7 +3,6 @@
  */
 package com.imos.hb.onetoone;
 
-import java.io.Serializable;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +31,7 @@ import com.imos.hb.onetomany.SkillType;
  */
 @SuppressWarnings("serial")
 @Entity
-public class PersonDetail implements Serializable, GenericObject {
+public class PersonDetail implements GenericObject {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

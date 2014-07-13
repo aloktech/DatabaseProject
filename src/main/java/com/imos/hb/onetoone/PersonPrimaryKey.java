@@ -3,19 +3,19 @@
  */
 package com.imos.hb.onetoone;
 
-import java.io.Serializable;
-
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+
+import com.imos.hb.generic.GenericObject;
 
 /**
  * @author Pintu
  *
  */
 @Embeddable
-public class PersonPrimaryKey implements Serializable {
+public class PersonPrimaryKey implements GenericObject {
 	
 	/**
 	 * 
@@ -30,20 +30,6 @@ public class PersonPrimaryKey implements Serializable {
 	private String employeeId;
 
 	/**
-	 * @return the id
-	 */
-	public long getId() {
-		return id;
-	}
-
-	/**
-	 * @param id the id to set
-	 */
-	public void setId(long id) {
-		this.id = id;
-	}
-
-	/**
 	 * @return the employeeId
 	 */
 	public String getEmployeeId() {
@@ -55,6 +41,12 @@ public class PersonPrimaryKey implements Serializable {
 	 */
 	public void setEmployeeId(String employeeId) {
 		this.employeeId = employeeId;
+	}
+
+	@Override
+	public Object getId() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 	

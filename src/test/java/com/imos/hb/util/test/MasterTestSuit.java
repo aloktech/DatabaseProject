@@ -12,7 +12,7 @@ import org.junit.runners.Suite;
  */
 
 @RunWith(Suite.class)
-@Suite.SuiteClasses({ HibernateUtilityTest.class, UtilityTest.class })
+@Suite.SuiteClasses({ HibernateUtilityTest.class, CommonUtilityTest.class })
 public class MasterTestSuit {
 
 }

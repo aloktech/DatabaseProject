@@ -9,9 +9,13 @@ package com.imos.hb.generic;
  */
 public class GenericObjectImpl implements GenericObject {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5458370520568676954L;
+
 	@Override
 	public Object getId() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 

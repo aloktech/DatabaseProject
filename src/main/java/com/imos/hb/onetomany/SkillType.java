@@ -1,6 +1,5 @@
 package com.imos.hb.onetomany;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,6 +13,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
+import com.imos.hb.generic.GenericObject;
 import com.imos.hb.manytomany.Domain;
 
 /**
@@ -22,7 +22,7 @@ import com.imos.hb.manytomany.Domain;
  */
 @SuppressWarnings("serial")
 @Entity
-public class SkillType implements Serializable {
+public class SkillType implements GenericObject {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

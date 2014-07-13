@@ -3,7 +3,6 @@
  */
 package com.imos.hb.manytomany;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,7 +27,7 @@ import com.imos.hb.onetoone.PersonDetail;
 @SuppressWarnings("serial")
 @Entity
 @NamedQueries({ @NamedQuery(name = "Address.findAll", query = "select a from Address a") })
-public class Address implements Serializable, GenericObject {
+public class Address implements GenericObject {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

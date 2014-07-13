@@ -1,7 +1,5 @@
 package com.imos.hb.onetoone;
 
-import java.io.Serializable;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
@@ -16,7 +14,7 @@ import com.imos.hb.generic.GenericObject;
 
 @Entity
 @NamedQueries({ @NamedQuery(name = "Person.findAll", query = "select p from Person p") })
-public class Person implements Serializable, GenericObject {
+public class Person implements GenericObject {
 
 	/**
 	 * 

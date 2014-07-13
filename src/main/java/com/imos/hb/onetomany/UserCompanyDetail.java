@@ -3,7 +3,6 @@
  */
 package com.imos.hb.onetomany;
 
-import java.io.Serializable;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,6 +15,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 
+import com.imos.hb.generic.GenericObject;
 import com.imos.hb.onetoone.Project;
 
 /**
@@ -23,7 +23,7 @@ import com.imos.hb.onetoone.Project;
  *
  */
 @Entity
-public class UserCompanyDetail implements Serializable {
+public class UserCompanyDetail implements GenericObject {
 
 	/**
 	 * 
@@ -46,13 +46,6 @@ public class UserCompanyDetail implements Serializable {
 
 	@Column
 	private Date dateOfRelease;
-
-	/**
-	 * @return the id
-	 */
-	public long getId() {
-		return id;
-	}
 
 	/**
 	 * @param id
@@ -120,6 +113,11 @@ public class UserCompanyDetail implements Serializable {
 	 */
 	public void setDateOfRelease(Date dateOfRelease) {
 		this.dateOfRelease = dateOfRelease;
+	}
+
+	@Override
+	public Object getId() {
+		return null;
 	}
 
 }
