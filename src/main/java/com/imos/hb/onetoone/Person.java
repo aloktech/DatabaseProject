@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -14,44 +15,42 @@ import javax.persistence.OneToOne;
 import com.imos.hb.generic.GenericObject;
 
 @Entity
-@NamedQueries({
-	@NamedQuery(name="User.findAll", query="select u from User u")
-})
-public class User implements Serializable, GenericObject {
-	
+@NamedQueries({ @NamedQuery(name = "Person.findAll", query = "select p from Person p") })
+public class Person implements Serializable, GenericObject {
+
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -693808501172324257L;
 	
-	@Column(name="FIRST_NAME", nullable=false)
-	private String firstName;
-	
-	@Column(name="MIDDLE_NAME")
-	private String middleName;
-	
-	@Column(name="LAST_NAME", nullable=false)
-	private String lastName;
-	
 	@Id
-	@Column(name="EMPLOYEE_ID", nullable=false)
-	private String employeeId;
+	@EmbeddedId
+	private PersonPrimaryKey id;
 	
-	@Column(name="GENDER", nullable=false)
+	@Column(name = "FIRST_NAME", nullable = false)
+	private String firstName;
+
+	@Column(name = "MIDDLE_NAME")
+	private String middleName;
+
+	@Column(name = "LAST_NAME", nullable = false)
+	private String lastName;
+
+	@Column(name = "GENDER", nullable = false)
 	private String gender;
-	
-	@OneToOne(cascade=CascadeType.ALL, orphanRemoval=true)
-	@JoinColumn(name="FK_UD_ID")
-	private UserDetail userDetail;
-	
+
+	@OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+	@JoinColumn(name="FK_PD_ID")
+	private PersonDetail personDetail;
+
 	@Override
 	public boolean equals(Object obj) {
-		if (obj instanceof User) {
-			User u = (User) obj;
+		if (obj instanceof Person) {
+			Person u = (Person) obj;
 			if (u == this) {
 				return true;
 			}
-			
+
 			if (u.getFirstName().equals(this.getFirstName())) {
 				if (u.getMiddleName().equals(this.getMiddleName())) {
 					if (u.getLastName().equals(this.getLastName())) {
@@ -61,34 +60,32 @@ public class User implements Serializable, GenericObject {
 					}
 				}
 			}
-			
+
 			return false;
 		} else {
 			return false;
 		}
 	}
-	
+
 	@Override
 	public int hashCode() {
-		int value = 15 * this.getFirstName().hashCode() + 
-		15 * this.getMiddleName().hashCode() + 
-		15 * this.getLastName().hashCode() + 
-		15 * this.getGender().hashCode();
+		int value = 15 * this.getFirstName().hashCode() + 15 * this.getMiddleName().hashCode() + 15
+				* this.getLastName().hashCode() + 15 * this.getGender().hashCode();
 		return value;
-	}
-	
-	/**
-	 * @return the userDetail
-	 */
-	public UserDetail getUserDetail() {
-		return userDetail;
 	}
 
 	/**
-	 * @param userDetail the userDetail to set
+	 * @return the personDetail
 	 */
-	public void setUserDetail(UserDetail userDetail) {
-		this.userDetail = userDetail;
+	public PersonDetail getPersonDetail() {
+		return personDetail;
+	}
+
+	/**
+	 * @param personDetail the personDetail to set
+	 */
+	public void setPersonDetail(PersonDetail personDetail) {
+		this.personDetail = personDetail;
 	}
 
 	/**
@@ -99,7 +96,8 @@ public class User implements Serializable, GenericObject {
 	}
 
 	/**
-	 * @param firstName the firstName to set
+	 * @param firstName
+	 *            the firstName to set
 	 */
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
@@ -113,7 +111,8 @@ public class User implements Serializable, GenericObject {
 	}
 
 	/**
-	 * @param middleName the middleName to set
+	 * @param middleName
+	 *            the middleName to set
 	 */
 	public void setMiddleName(String middleName) {
 		this.middleName = middleName;
@@ -127,25 +126,13 @@ public class User implements Serializable, GenericObject {
 	}
 
 	/**
-	 * @param lastName the lastName to set
+	 * @param lastName
+	 *            the lastName to set
 	 */
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
 
-	/**
-	 * @return the employeeId
-	 */
-	public String getEmployeeId() {
-		return employeeId;
-	}
-
-	/**
-	 * @param employeeId the employeeId to set
-	 */
-	public void setEmployeeId(String employeeId) {
-		this.employeeId = employeeId;
-	}
 
 	/**
 	 * @return the gender
@@ -155,16 +142,24 @@ public class User implements Serializable, GenericObject {
 	}
 
 	/**
-	 * @param gender the gender to set
+	 * @param gender
+	 *            the gender to set
 	 */
 	public void setGender(String gender) {
 		this.gender = gender;
 	}
 
-	@Override
-	public Object getId() {
-		return employeeId;
+	/**
+	 * @return the id
+	 */
+	public PersonPrimaryKey getId() {
+		return id;
 	}
-	
-	
+
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(PersonPrimaryKey id) {
+		this.id = id;
+	}
 }

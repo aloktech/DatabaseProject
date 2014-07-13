@@ -7,13 +7,14 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
 
 import com.imos.hb.onetomany.SkillType;
 
@@ -26,15 +27,20 @@ import com.imos.hb.onetomany.SkillType;
 public class Domain implements Serializable {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name="DOMAIN_ID")
 	private Long id;
-	
-	@ManyToMany(targetEntity=Company.class, mappedBy="domains")
+
+	@ManyToMany
+	@JoinTable(name="COMPANY_DOMAIN", joinColumns={@JoinColumn(name="DOMAIN_ID",insertable = false, updatable = false)},
+	inverseJoinColumns={@JoinColumn(name="COMPANY_ID",insertable = false, updatable = false)})
 	private final List<Company> companies = new ArrayList<>();
-	
-	@OneToMany(targetEntity=SkillType.class, mappedBy="domain")
+
+	@ManyToMany
+	@JoinTable(name="DOMAIN_SKILLTYPE", joinColumns={@JoinColumn(name="DOMAIN_ID",insertable = false, updatable = false)},
+	inverseJoinColumns={@JoinColumn(name="SKILLTYPE_ID",insertable = false, updatable = false)})
 	private final List<SkillType> skillTypes = new ArrayList<>();
-	
+
 	/**
 	 * @return the id
 	 */
@@ -43,7 +49,8 @@ public class Domain implements Serializable {
 	}
 
 	/**
-	 * @param id the id to set
+	 * @param id
+	 *            the id to set
 	 */
 	public void setId(Long id) {
 		this.id = id;
@@ -62,5 +69,5 @@ public class Domain implements Serializable {
 	public List<SkillType> getSkillTypes() {
 		return skillTypes;
 	}
-	
+
 }

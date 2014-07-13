@@ -8,6 +8,6 @@ package com.imos.hb.generic;
  *
  */
 public interface GenericObject {
-	
+
 	Object getId();
 }

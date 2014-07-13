@@ -5,8 +5,6 @@ package com.imos.hb.util;
 
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Properties;
 
 import org.hibernate.Session;
@@ -23,16 +21,16 @@ import org.hibernate.tool.hbm2ddl.SchemaExport;
 public class HibernateUtility {
 
 	private static HibernateUtility instance = new HibernateUtility();
-	
+
 	private Configuration cfg = new Configuration();
-	
+
 	private Session session;
 	private SessionFactory sessionFactory;
 	private ServiceRegistry serviceRegistry;
 
 	private boolean createDatabase;
 
-	private String filePath, databaseName, url = "hibernate.connection.url" ;
+	private String filePath, databaseName, url = "hibernate.connection.url";
 
 	private HibernateUtility() {
 	}
@@ -47,7 +45,7 @@ public class HibernateUtility {
 
 	public void configure() {
 
-		for (String path : CommonUtility.extractPackageNameFromFilePath(filePath,"src\\main\\java\\","java")) {
+		for (String path : CommonUtility.extractPackageNameFromFilePath(filePath, "src\\main\\java\\", "java")) {
 			try {
 				cfg.addAnnotatedClass(Class.forName(path));
 			} catch (ClassNotFoundException e) {
@@ -59,7 +57,7 @@ public class HibernateUtility {
 		try {
 			prop.load(new FileReader("src/main/resources/mysql-resources.properties"));
 			cfg.setProperties(prop);
-			cfg.setProperty(url, cfg.getProperty(url)+"/"+databaseName);
+			cfg.setProperty(url, cfg.getProperty(url) + "/" + databaseName);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -71,7 +69,7 @@ public class HibernateUtility {
 
 	public Session createSession() {
 		serviceRegistry = new StandardServiceRegistryBuilder().applySettings(cfg.getProperties()).build();
-		boolean createSession=false;
+		boolean createSession = false;
 		if (session == null) {
 			createSession = true;
 		} else if (!session.isOpen()) {
@@ -85,24 +83,24 @@ public class HibernateUtility {
 			}
 			session = sessionFactory.openSession();
 		}
-		
+
 		return session;
 	}
-	
+
 	public void close() {
 		if (session.isOpen()) {
 			session.flush();
 			session.clear();
 			session.close();
 		}
-		
+
 		sessionFactory.close();
-		
-		if(serviceRegistry!= null) {
-	        StandardServiceRegistryBuilder.destroy(serviceRegistry);
-	    }
+
+		if (serviceRegistry != null) {
+			StandardServiceRegistryBuilder.destroy(serviceRegistry);
+		}
 	}
-	
+
 	/**
 	 * @return the session
 	 */
@@ -111,7 +109,8 @@ public class HibernateUtility {
 	}
 
 	/**
-	 * @param session the session to set
+	 * @param session
+	 *            the session to set
 	 */
 	public void setSession(Session session) {
 		this.session = session;
@@ -125,7 +124,8 @@ public class HibernateUtility {
 	}
 
 	/**
-	 * @param sessionFactory the sessionFactory to set
+	 * @param sessionFactory
+	 *            the sessionFactory to set
 	 */
 	public void setSessionFactory(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;

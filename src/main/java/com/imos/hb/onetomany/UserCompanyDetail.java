@@ -10,6 +10,8 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
@@ -22,25 +24,26 @@ import com.imos.hb.onetoone.Project;
  */
 @Entity
 public class UserCompanyDetail implements Serializable {
-	
+
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 978005478436650731L;
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private long id;
-	
+
 	@Column
 	private String companyName;
-	
+
 	@OneToMany
-	@JoinColumn(name="FK_UCD_ID")
+	@JoinColumn(name = "FK_UCD_ID",insertable = false, updatable = false)
 	private List<Project> projects = new ArrayList<>();
-	
+
 	@Column
 	private Date dateOfJoin;
-	
+
 	@Column
 	private Date dateOfRelease;
 
@@ -52,7 +55,8 @@ public class UserCompanyDetail implements Serializable {
 	}
 
 	/**
-	 * @param id the id to set
+	 * @param id
+	 *            the id to set
 	 */
 	public void setId(long id) {
 		this.id = id;
@@ -66,7 +70,8 @@ public class UserCompanyDetail implements Serializable {
 	}
 
 	/**
-	 * @param companyName the companyName to set
+	 * @param companyName
+	 *            the companyName to set
 	 */
 	public void setCompanyName(String companyName) {
 		this.companyName = companyName;
@@ -80,7 +85,8 @@ public class UserCompanyDetail implements Serializable {
 	}
 
 	/**
-	 * @param projects the projects to set
+	 * @param projects
+	 *            the projects to set
 	 */
 	public void setProjects(List<Project> projects) {
 		this.projects = projects;
@@ -94,7 +100,8 @@ public class UserCompanyDetail implements Serializable {
 	}
 
 	/**
-	 * @param dateOfJoin the dateOfJoin to set
+	 * @param dateOfJoin
+	 *            the dateOfJoin to set
 	 */
 	public void setDateOfJoin(Date dateOfJoin) {
 		this.dateOfJoin = dateOfJoin;
@@ -108,11 +115,11 @@ public class UserCompanyDetail implements Serializable {
 	}
 
 	/**
-	 * @param dateOfRelease the dateOfRelease to set
+	 * @param dateOfRelease
+	 *            the dateOfRelease to set
 	 */
 	public void setDateOfRelease(Date dateOfRelease) {
 		this.dateOfRelease = dateOfRelease;
 	}
 
-	
 }

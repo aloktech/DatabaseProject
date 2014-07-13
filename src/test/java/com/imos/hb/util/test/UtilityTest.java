@@ -8,28 +8,28 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 import com.imos.hb.DatabaseProjectMainFile;
-import com.imos.hb.onetoone.User;
+import com.imos.hb.onetoone.Person;
 
 /**
  * @author Pintu
  *
  */
 public class UtilityTest {
-	
+
 	@Test
 	public void testCopyObjects() {
 		DatabaseProjectMainFile ins = new DatabaseProjectMainFile();
-		User us1 = new User();
-		us1.setFirstName("Alok");
-		us1.setMiddleName("Ranjan");
-		us1.setLastName("Meher");
-		User us2 = new User();
-		
-		assertNotEquals(us1.getFirstName(), us2.getFirstName());
-		assertNotEquals(us1.getMiddleName(), us2.getMiddleName());
-		assertNotEquals(us1.getLastName(), us2.getLastName());
-		ins.copyObjects(us1, us2);
-		assertEquals(us1.getFirstName(), us2.getFirstName());
-		assertEquals(us1.getMiddleName(), us2.getMiddleName());
+		Person person1 = new Person();
+		person1.setFirstName("Alok");
+		person1.setMiddleName("Ranjan");
+		person1.setLastName("Meher");
+		Person person2 = new Person();
+
+		assertNotEquals(person1.getFirstName(), person2.getFirstName());
+		assertNotEquals(person1.getMiddleName(), person2.getMiddleName());
+		assertNotEquals(person1.getLastName(), person2.getLastName());
+		ins.copyPerson(person1, person2);
+		assertEquals(person1.getFirstName(), person2.getFirstName());
+		assertEquals(person1.getMiddleName(), person2.getMiddleName());
 	}
 }

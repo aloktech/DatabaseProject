@@ -16,13 +16,13 @@ import com.imos.hb.util.CommonUtility;
  *
  */
 public class HibernateUtilityTest {
-	
+
 	@Test
 	public void extractPackageNameFromFilePathTest() {
 		String filePath = "src\\test\\resources\\com\\imos\\testing\\";
 		List<String> paths = null;
-		
-		paths  = CommonUtility.extractPackageNameFromFilePath(filePath,"src\\main\\java\\", "java");
+
+		paths = CommonUtility.extractPackageNameFromFilePath(filePath, "src\\main\\java\\", "java");
 		assertTrue(paths.size() == 2);
 		assertNotNull(filePath);
 		assertFalse(filePath.isEmpty());

@@ -8,6 +8,8 @@ import java.sql.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 /**
@@ -15,23 +17,25 @@ import javax.persistence.Id;
  *
  */
 @Entity
-public class ProjectDetail implements Serializable{
-	
+public class ProjectDetail implements Serializable {
+
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -1735804770457978305L;
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(name="PD_ID")
 	private long id;
-	
-	@Column
+
+	@Column(name="NAME")
 	private String projectName;
-	
-	@Column
+
+	@Column(name="DATE_OF_JOIN")
 	private Date dateOfJoin;
-	
-	@Column
+
+	@Column(name="DATE_OF_RELEASE")
 	private Date dateOfRelease;
 
 	/**
@@ -42,7 +46,8 @@ public class ProjectDetail implements Serializable{
 	}
 
 	/**
-	 * @param id the id to set
+	 * @param id
+	 *            the id to set
 	 */
 	public void setId(long id) {
 		this.id = id;
@@ -56,7 +61,8 @@ public class ProjectDetail implements Serializable{
 	}
 
 	/**
-	 * @param projectName the projectName to set
+	 * @param projectName
+	 *            the projectName to set
 	 */
 	public void setProjectName(String projectName) {
 		this.projectName = projectName;
@@ -70,7 +76,8 @@ public class ProjectDetail implements Serializable{
 	}
 
 	/**
-	 * @param dateOfJoin the dateOfJoin to set
+	 * @param dateOfJoin
+	 *            the dateOfJoin to set
 	 */
 	public void setDateOfJoin(Date dateOfJoin) {
 		this.dateOfJoin = dateOfJoin;
@@ -84,10 +91,11 @@ public class ProjectDetail implements Serializable{
 	}
 
 	/**
-	 * @param dateOfRelease the dateOfRelease to set
+	 * @param dateOfRelease
+	 *            the dateOfRelease to set
 	 */
 	public void setDateOfRelease(Date dateOfRelease) {
 		this.dateOfRelease = dateOfRelease;
 	}
-	
+
 }

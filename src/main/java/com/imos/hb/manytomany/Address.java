@@ -4,6 +4,8 @@
 package com.imos.hb.manytomany;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,12 +13,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 
 import com.imos.hb.generic.GenericObject;
-import com.imos.hb.onetoone.UserDetail;
+import com.imos.hb.onetoone.PersonDetail;
 
 /**
  * @author Pintu
@@ -24,39 +27,41 @@ import com.imos.hb.onetoone.UserDetail;
  */
 @SuppressWarnings("serial")
 @Entity
-@NamedQueries({
-	@NamedQuery(name="Address.findAll", query="select a from Address a")
-})
+@NamedQueries({ @NamedQuery(name = "Address.findAll", query = "select a from Address a") })
 public class Address implements Serializable, GenericObject {
-	
+
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="ADDR_ID")
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "ADDRESS_ID")
 	private Long id;
-	
-	@ManyToOne
-	@JoinColumn(name="FK_ADDR_ID")
-	private UserDetail userDetail;
-	
-	@Column(name="ADDRESS_TYPE")
+
+	@ManyToMany
+	@JoinTable(name="PERSON_ADDRESS", joinColumns={@JoinColumn(name="ADDRESS_ID",insertable = false, updatable = false)},
+	inverseJoinColumns={@JoinColumn(name="PD_ID",insertable = false, updatable = false)})
+	private final List<PersonDetail> userDetails = new ArrayList<>();
+
+	@Column(name = "ADDRESS_TYPE")
 	private String addressType;
-	
-	@Column(name="FIRST_STREET")
+
+	@Column(name = "FIRST_STREET")
 	private String firstStreet;
-	
-	@Column(name="SECOND_STREET")
+
+	@Column(name = "SECOND_STREET")
 	private String secondStreet;
 	
-	@Column(name="CITY")
+	@Column(name = "LOCATION")
+	private String location;
+
+	@Column(name = "CITY")
 	private String city;
-	
-	@Column(name="COUNTRY")
+
+	@Column(name = "COUNTRY")
 	private String country;
-	
-	@Column(name="STATE")
+
+	@Column(name = "STATE")
 	private String state;
-	
-	@Column(name="PIN_CODE")
+
+	@Column(name = "PIN_CODE")
 	private int pinCode;
 
 	/**
@@ -67,18 +72,12 @@ public class Address implements Serializable, GenericObject {
 	}
 
 	/**
-	 * @param id the id to set
+	 * @param id
+	 *            the id to set
 	 */
 	public void setId(Long id) {
 		this.id = id;
 	}
-
-	/**
-	 * @return the userDetail
-	 *//*
-	public List<UserDetail> getUserDetail() {
-		return userDetail;
-	}*/
 
 	/**
 	 * @return the firstStreet
@@ -88,7 +87,8 @@ public class Address implements Serializable, GenericObject {
 	}
 
 	/**
-	 * @param firstStreet the firstStreet to set
+	 * @param firstStreet
+	 *            the firstStreet to set
 	 */
 	public void setFirstStreet(String firstStreet) {
 		this.firstStreet = firstStreet;
@@ -102,7 +102,8 @@ public class Address implements Serializable, GenericObject {
 	}
 
 	/**
-	 * @param secondStreet the secondStreet to set
+	 * @param secondStreet
+	 *            the secondStreet to set
 	 */
 	public void setSecondStreet(String secondStreet) {
 		this.secondStreet = secondStreet;
@@ -116,7 +117,8 @@ public class Address implements Serializable, GenericObject {
 	}
 
 	/**
-	 * @param city the city to set
+	 * @param city
+	 *            the city to set
 	 */
 	public void setCity(String city) {
 		this.city = city;
@@ -130,7 +132,8 @@ public class Address implements Serializable, GenericObject {
 	}
 
 	/**
-	 * @param country the country to set
+	 * @param country
+	 *            the country to set
 	 */
 	public void setCountry(String country) {
 		this.country = country;
@@ -144,7 +147,8 @@ public class Address implements Serializable, GenericObject {
 	}
 
 	/**
-	 * @param state the state to set
+	 * @param state
+	 *            the state to set
 	 */
 	public void setState(String state) {
 		this.state = state;
@@ -158,7 +162,8 @@ public class Address implements Serializable, GenericObject {
 	}
 
 	/**
-	 * @param pinCode the pinCode to set
+	 * @param pinCode
+	 *            the pinCode to set
 	 */
 	public void setPinCode(int pinCode) {
 		this.pinCode = pinCode;
@@ -172,25 +177,33 @@ public class Address implements Serializable, GenericObject {
 	}
 
 	/**
-	 * @param addressType the addressType to set
+	 * @param addressType
+	 *            the addressType to set
 	 */
 	public void setAddressType(String addressType) {
 		this.addressType = addressType;
 	}
 
 	/**
-	 * @return the userDetail
+	 * @return the userDetails
 	 */
-	public UserDetail getUserDetail() {
-		return userDetail;
+	public List<PersonDetail> getUserDetails() {
+		return userDetails;
 	}
 
 	/**
-	 * @param userDetail the userDetail to set
+	 * @return the location
 	 */
-	public void setUserDetail(UserDetail userDetail) {
-		this.userDetail = userDetail;
+	public String getLocation() {
+		return location;
 	}
-	
-	
+
+	/**
+	 * @param location the location to set
+	 */
+	public void setLocation(String location) {
+		this.location = location;
+	}
+
+
 }

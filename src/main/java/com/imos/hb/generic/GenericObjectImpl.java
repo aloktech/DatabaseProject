@@ -3,7 +3,6 @@
  */
 package com.imos.hb.generic;
 
-
 /**
  * @author Pintu
  *

@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -24,24 +24,27 @@ import com.imos.hb.manytomany.Domain;
 @SuppressWarnings("serial")
 @Entity
 public class Project implements Serializable {
-	
+
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name="PROJECT_ID")
 	private Long id;
 
 	@ManyToOne
-	@JoinColumn(name="COMPANY_ID")
+	@JoinColumn(name = "COMPANY_ID")
 	private Company company;
-	
+
 	@OneToOne
+	@JoinColumn(name="DOMAIN_PROJECT")
 	private Domain domain;
-	
-	@OneToMany
-	@JoinColumn(name="FK_UD_ID")
-	private List<UserDetail> users = new ArrayList<>();
-	
+
+	@OneToMany(targetEntity=PersonDetail.class, mappedBy="")
+	private List<PersonDetail> users = new ArrayList<>();
+
 	@OneToOne
+	@JoinColumn(name="FK_PROJECT_DETAIL_ID")
 	private ProjectDetail projectDetail;
+
 	/**
 	 * @return the id
 	 */
@@ -50,7 +53,8 @@ public class Project implements Serializable {
 	}
 
 	/**
-	 * @param id the id to set
+	 * @param id
+	 *            the id to set
 	 */
 	public void setId(Long id) {
 		this.id = id;
@@ -64,7 +68,8 @@ public class Project implements Serializable {
 	}
 
 	/**
-	 * @param domain the domain to set
+	 * @param domain
+	 *            the domain to set
 	 */
 	public void setDomain(Domain domain) {
 		this.domain = domain;
@@ -73,14 +78,15 @@ public class Project implements Serializable {
 	/**
 	 * @return the users
 	 */
-	public List<UserDetail> getUsers() {
+	public List<PersonDetail> getUsers() {
 		return users;
 	}
 
 	/**
-	 * @param users the users to set
+	 * @param users
+	 *            the users to set
 	 */
-	public void setUsers(List<UserDetail> users) {
+	public void setUsers(List<PersonDetail> users) {
 		this.users = users;
 	}
 
@@ -92,7 +98,8 @@ public class Project implements Serializable {
 	}
 
 	/**
-	 * @param projectDetail the projectDetail to set
+	 * @param projectDetail
+	 *            the projectDetail to set
 	 */
 	public void setProjectDetail(ProjectDetail projectDetail) {
 		this.projectDetail = projectDetail;
@@ -105,6 +112,5 @@ public class Project implements Serializable {
 	public void setCompany(Company company) {
 		this.company = company;
 	}
-	
-	
+
 }

@@ -5,24 +5,27 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 import com.imos.hb.onetoone.Project;
 
 public class UserProjectDetail {
-	
+
 	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private long id;
-	
+
 	@Column
 	private String companyName;
-	
+
 	@Column
 	private List<Project> projects = new ArrayList<>();
-	
+
 	@Column
 	private Date dateOfJoin;
-	
+
 	@Column
 	private Date dateOfReleave;
 
@@ -34,7 +37,8 @@ public class UserProjectDetail {
 	}
 
 	/**
-	 * @param id the id to set
+	 * @param id
+	 *            the id to set
 	 */
 	public void setId(long id) {
 		this.id = id;
@@ -48,7 +52,8 @@ public class UserProjectDetail {
 	}
 
 	/**
-	 * @param companyName the companyName to set
+	 * @param companyName
+	 *            the companyName to set
 	 */
 	public void setCompanyName(String companyName) {
 		this.companyName = companyName;
@@ -62,7 +67,8 @@ public class UserProjectDetail {
 	}
 
 	/**
-	 * @param projects the projects to set
+	 * @param projects
+	 *            the projects to set
 	 */
 	public void setProjects(List<Project> projects) {
 		this.projects = projects;
@@ -76,7 +82,8 @@ public class UserProjectDetail {
 	}
 
 	/**
-	 * @param dateOfJoin the dateOfJoin to set
+	 * @param dateOfJoin
+	 *            the dateOfJoin to set
 	 */
 	public void setDateOfJoin(Date dateOfJoin) {
 		this.dateOfJoin = dateOfJoin;
@@ -90,11 +97,11 @@ public class UserProjectDetail {
 	}
 
 	/**
-	 * @param dateOfReleave the dateOfReleave to set
+	 * @param dateOfReleave
+	 *            the dateOfReleave to set
 	 */
 	public void setDateOfReleave(Date dateOfReleave) {
 		this.dateOfReleave = dateOfReleave;
 	}
-	
-	
+
 }

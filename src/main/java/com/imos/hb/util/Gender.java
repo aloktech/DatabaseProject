@@ -8,5 +8,5 @@ package com.imos.hb.util;
  *
  */
 public enum Gender {
-	MALE, FEMALE;
+	MALE, FEMALE,OTHERS;
 }
